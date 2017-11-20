@@ -1,17 +1,37 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>IMeteo</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content padding class='home'>
+  <ion-grid *ngIf="weather">
+     
+     <ion-row>
+       <ion-col width-50 offset-25>
+            <h2 class="location">{{ weather.name }},{{ weather.sys.country }} </h2>   
+            <p text-capitalize text-center>{{myjour}}</p>       
+            <div class="icon"> 
+                  <img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" />
+            </div>
+            <h3 class="desc" text-capitalize >{{weather.weather[0].description}}</h3>
+            <h1 class="temp"> {{weather.main.temp}} &deg;C</h1>
+       </ion-col>
+     </ion-row> 
+
+     <ion-row>
+        <ion-col width-100>
+            <ion-list>
+<!--               <ion-item><strong>JOUR  : {{ myjour }}</strong></ion-item>
+ -->              <ion-item><strong>Température: {{weather.main.temp}} &deg;C </strong></ion-item>
+<!--               <ion-item><strong>Humidité: {{weather.main.humidity}} </strong></ion-item>
+ -->              <ion-item><strong>Temp Minimale: {{weather.main.temp_min}} &deg;C</strong></ion-item>
+              <ion-item><strong>Temp Maximale: {{weather.main.temp_max}} &deg;C</strong></ion-item>
+              <ion-item><strong>Levé du Soleil: {{ mysunrise}} </strong></ion-item>
+              <ion-item><strong>Couché du Soleil: {{mysunset}} </strong></ion-item>
+            </ion-list>
+        </ion-col>
+     </ion-row>
+
+  </ion-grid>
 </ion-content>
